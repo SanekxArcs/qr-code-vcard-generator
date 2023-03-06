@@ -24,14 +24,14 @@ function QrCodeApp() {
   };
 
   let inputStype =
-    "px-3 py-2 rounded-md outline-none w-80 focus:ring-2 focus:ring-slate-400 hover:bg-slate-200 bg-slate-50 transition-all shadow text-slate-900 font-medium duration-300 hover:-translate-y-1";
+    "px-3 shadow py-2 rounded-md outline-none w-80 focus:ring-2 focus:ring-slate-400 hover:bg-slate-200 bg-slate-50 transition-all shadow text-slate-900 font-medium duration-300 hover:-translate-y-1";
   let btn =
-    "px-4 py-2 font-medium text-xl uppercase text-slate-100 bg-slate-700 rounded-md w-80 hover:bg-slate-200 hover:text-slate-700 hover:-translate-y-1 transition-all duration-300";
+    "px-4 py-2 shadow font-medium text-xl uppercase text-slate-100 bg-slate-700 rounded-md w-80 hover:bg-slate-200 hover:text-slate-700 hover:-translate-y-1 transition-all duration-300";
   return (
     <div className="">
       <div className="">
         <div className="flex flex-col items-center gap-3">
-          <h1 className="font-bold text-4xl text-center mb-5 text-slate-100 px-2 ">
+          <h1 className="font-bold text-4xl text-center mb-5 text-slate-800 dark:text-slate-100 px-2 ">
             QR-Code vCard Generator
           </h1>
           <input
@@ -55,7 +55,10 @@ function QrCodeApp() {
             onChange={(e) => setEmail(e.target.value)}
             className={inputStype}
           />
-          <div className="overflow-hidden rounded-md w-80 h-80">
+          <div
+            className="overflow-hidden rounded-md w-80 h-80 shadow hover:-translate-y-1 transition-all duration-300"
+            onClick={handleDownloadPng}
+          >
             <QRCode
               id="qrcode"
               value={`BEGIN:VCARD\nVERSION:3.0\nN:${name};;;;\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`}
@@ -76,7 +79,7 @@ function QrCodeApp() {
           <h2 className="text-slate-700">
             by{" "}
             <a
-              className="text-slate-700 hover:text-slate-200 transition-all duration-300"
+              className="text-slate-700 hover:font-bold dark:hover:text-slate-200 transition-all duration-300"
               href="https://github.com/SanekxArcs"
             >
               Sanekx Arcs
