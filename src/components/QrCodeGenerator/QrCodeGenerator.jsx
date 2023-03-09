@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import QRCode from "qrcode.react";
 
 function QrCodeApp() {
-  let qrCodeDiv;
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,35 +59,32 @@ function QrCodeApp() {
             onChange={(e) => setEmail(e.target.value)}
             className={inputStype}
           />
-          {
-            (qrCodeDiv =
-              phone !== "" || name !== "" || email !== "" ? (
-                <>
-                  <div
-                    className="overflow-hidden transition-all duration-300 rounded-md shadow w-80 h-80 hover:-translate-y-1"
-                    onClick={handleDownloadPng}
-                  >
-                    <QRCode
-                      id="qrcode"
-                      value={`BEGIN:VCARD\nVERSION:3.0\nN:${name};;;;\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`}
-                      size={320}
-                      fgColor="#000000"
-                      bgColor="#ffffff"
-                      level="H"
-                      includeMargin={true}
-                    />
-                  </div>
-                  <button className={btn} onClick={handleDownloadPng}>
-                    Download PNG
-                  </button>
-                  <button className={btn} onClick={handleReset}>
-                    Clear
-                  </button>
-                </>
-              ) : (
-                ""
-              ))
-          }
+          {phone !== "" || name !== "" || email !== "" ? (
+            <>
+              <div
+                className="overflow-hidden transition-all duration-300 rounded-md shadow w-80 h-80 hover:-translate-y-1"
+                onClick={handleDownloadPng}
+              >
+                <QRCode
+                  id="qrcode"
+                  value={`BEGIN:VCARD\nVERSION:3.0\nN:${name};;;;\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`}
+                  size={320}
+                  fgColor="#000000"
+                  bgColor="#ffffff"
+                  level="H"
+                  includeMargin={true}
+                />
+              </div>
+              <button className={btn} onClick={handleDownloadPng}>
+                Download PNG
+              </button>
+              <button className={btn} onClick={handleReset}>
+                Clear
+              </button>
+            </>
+          ) : (
+            ""
+          )}
 
           <h2 className="text-slate-700">
             by{" "}
