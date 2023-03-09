@@ -7,14 +7,18 @@ function QrCodeApp() {
   const [email, setEmail] = useState("");
 
   const handleDownloadPng = () => {
-    const canvas = document.getElementById("qrcode");
-    const pngUrl = canvas.toDataURL("image/png");
-    const downloadLink = document.createElement("a");
-    downloadLink.href = pngUrl;
-    downloadLink.download = "qrcode.png";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+    if (phone !== "" || name !== "" || email !== "") {
+      const canvas = document.getElementById("qrcode");
+      const pngUrl = canvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = pngUrl;
+      downloadLink.download = "qrcode.png";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    } else {
+      alert("Please enter your Name, Phone or Email.");
+    }
   };
 
   const handleReset = () => {
@@ -31,7 +35,7 @@ function QrCodeApp() {
     <div className="">
       <div className="">
         <div className="flex flex-col items-center gap-3">
-          <h1 className="font-bold text-4xl text-center mb-5 text-slate-800 dark:text-slate-100 px-2 ">
+          <h1 className="px-2 mb-5 text-4xl font-bold text-center text-slate-800 dark:text-slate-100 ">
             QR-Code vCard Generator
           </h1>
           <input
@@ -56,7 +60,7 @@ function QrCodeApp() {
             className={inputStype}
           />
           <div
-            className="overflow-hidden rounded-md w-80 h-80 shadow hover:-translate-y-1 transition-all duration-300"
+            className="overflow-hidden transition-all duration-300 rounded-md shadow w-80 h-80 hover:-translate-y-1"
             onClick={handleDownloadPng}
           >
             <QRCode
@@ -79,7 +83,7 @@ function QrCodeApp() {
           <h2 className="text-slate-700">
             by{" "}
             <a
-              className="text-slate-700 hover:font-bold dark:hover:text-slate-200 transition-all duration-300"
+              className="transition-all duration-300 text-slate-700 hover:font-bold dark:hover:text-slate-200"
               href="https://github.com/SanekxArcs"
             >
               Sanekx Arcs
